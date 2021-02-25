@@ -1,0 +1,14 @@
+.denom-label {
+  display: inline-block;
+  width: 3em;
+}
+
+.denom-input {
+  margin: 0 1em 0 1em;
+  text-align: right;
+}
+
+.denom-subtotal {
+  display: inline-block;
+  width: 3em;
+}
