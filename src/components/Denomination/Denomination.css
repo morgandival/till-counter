@@ -1,3 +1,7 @@
+.denomination {
+  text-align: center;
+}
+
 .denom-label {
   display: inline-block;
   width: 3em;
@@ -8,7 +12,7 @@
   text-align: right;
 }
 
-.denom-subtotal {
+.denom-count {
   display: inline-block;
   width: 3em;
 }

@@ -1,3 +1,4 @@
+import React from 'react';
 import './Denomination.css';
 
 type Props = {
@@ -9,6 +10,27 @@ function Denomination (props: Props) {
   
   // set the id of the input element for later selection
   const inputID: string = 'denom-' + props.denom.toString();
+  let regex: string = "";
+
+  switch (props.denom) {
+    case 100:
+      regex = "[0-9]*[0]{2}.[0]{2}";
+      break;
+    case 50:
+      regex = "[0-9]*[0]{2}.[0]{2}";
+      break;
+  }
+
+  // event handler
+  const [amount, setAmount] = React.useState({
+    error: false,
+    value: null
+  });
+
+  const handleChange = (e: any) => setAmount(e.target.value);
+    
+  console.log(amount);
+  
 
   return (
     <div className="denomination">
@@ -16,18 +38,12 @@ function Denomination (props: Props) {
       <input
         id={inputID}
         className="denom-input"
+        pattern={regex}
         defaultValue="0.00"
-        onBlur={(e) => {
-          console.log('Focused away from ' + inputID);
-          
-          // insert validation here
-          
-          //const inputText = document.getElementById(inputID)?.textContent;
-
-          //console.log(inputText);
-        }}>
+        onChange={handleChange}
+      >
       </input>
-      <label className="denom-subtotal">$0.00</label>
+      <label className="denom-count">0</label>
     </div>
   );
 }
