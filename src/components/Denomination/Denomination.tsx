@@ -63,8 +63,8 @@ function Denomination (props: Props) {
   }
 
   // state handlers
-  const [amount, setAmount] = React.useState<number>();
-  const [count = 0, setCount] = React.useState<number>(); // count = 0 initialises displayed value
+  const [amount, setAmount] = React.useState<number>(0);
+  const [count, setCount] = React.useState<number>(0); // count = 0 initialises displayed value
 
   // when input value changes
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -74,15 +74,20 @@ function Denomination (props: Props) {
   // when input loses focus...
   const handleBlur = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAmount(parseFloat(event.target.value));
-    
+
+    // format output to 2 decimal places
+    console.log(amount?.toFixed(2));
+
+
     // check for empty value 
     if (amount != null) {
 
-      // define the 
+      // calculate the count
       const x: number = amount / props.denom;
 
-      // change the count
+      // if the count is/is not a whole number...
       if (Number.isInteger(x)) {
+        // change the count
         setCount(x);
       }
       // set count to zero
@@ -98,9 +103,12 @@ function Denomination (props: Props) {
       <label className="denom-label">{props.label}</label>
       <input
         id={inputID}
+        type="text"
         className="denom-input"
+        step={props.denom}
+        min="0"
         pattern={regex}
-        defaultValue="0.00"   
+        defaultValue="0.00"
         onChange={handleChange}
         onBlur={handleBlur}
       >
