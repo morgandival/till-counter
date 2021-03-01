@@ -63,7 +63,7 @@ function Denomination (props: Props) {
   }
 
   // state handlers
-  const [amount, setAmount] = React.useState<number>(0);
+  const [amount, setAmount] = React.useState<number>(0.00);
   const [count, setCount] = React.useState<number>(0); // count = 0 initialises displayed value
 
   // when input value changes
@@ -76,7 +76,7 @@ function Denomination (props: Props) {
     setAmount(parseFloat(event.target.value));
 
     // format output to 2 decimal places
-    console.log(amount?.toFixed(2));
+    //console.log(amount?.toFixed(2));
 
 
     // check for empty value 
