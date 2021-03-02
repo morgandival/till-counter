@@ -10,7 +10,7 @@ function Denomination (props: Props) {
   
   // set the id of the input element for later selection
   const inputID: string = 'denom-' + props.denom.toString();
-  
+
   // initialise regex string
   let regex: string = "";
 
@@ -63,21 +63,27 @@ function Denomination (props: Props) {
   }
 
   // state handlers
-  const [amount, setAmount] = React.useState<number>(0.00);
+  const [amount, setAmount] = React.useState<number>(0);
   const [count, setCount] = React.useState<number>(0); // count = 0 initialises displayed value
 
-  // when input value changes
+  // localStorage.setItem(inputID, amount.toFixed(2));
+
+  // when input value changes... 
+  // N.B. THIS IS ABSOLUTELY NECESSARY BECAUSE OTHERWISE onBlur EVENT RETURNS ZERO THE FIRST TIME
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // set amount to number entered
     setAmount(parseFloat(event.target.value));
   }
 
   // when input loses focus...
   const handleBlur = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // set amount to number entered
     setAmount(parseFloat(event.target.value));
+    // console.log(amount);
 
-    // format output to 2 decimal places
-    //console.log(amount?.toFixed(2));
 
+    localStorage.setItem(inputID, amount.toFixed(2));
+    //console.log(inputID + ' = ' + localStorage.getItem(inputID));
 
     // check for empty value 
     if (amount != null) {
