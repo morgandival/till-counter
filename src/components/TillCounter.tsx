@@ -1,34 +1,50 @@
 import React from 'react';
 import './TillCounter.css';
 
-
+// Declare Props type
 type Props = {
   denoms: Array<number>;
 }
 
+// Main function
 function TillCounter (props: Props) {
 
   // state initialisation
   const [total, setTotal] = React.useState<number>(0);
 
+  let storage: {key: string, value: number}[] = [];
+
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     // set amount to number entered
-    //setAmount(parseFloat(event.target.value));
-    console.log('Change');
+
+    let x: string = event.target.id;
+    let y: string = event.target.value;
+
+    console.log('Change:', x, y);
   }
 
   const handleBlur = (event: React.ChangeEvent<HTMLInputElement>) => {
     // set amount to number entered
-    //setAmount(parseFloat(event.target.value));
-    console.log('Blur');
+
+    let x: string = event.target.id;
+    let y: string = event.target.value;
+
+    console.log('Blur:', x, y);
+
+    if (!storage.keys) {
+      storage.push({key: x, value: parseFloat(y)});
+    }
+    else {
+      
+    }
   }
 
-  
+
   const outputs: any = [];
 
   props.denoms.forEach(function (value) {
-    //console.log(value);
+
     // initialise regex string
     let regex: string = "";
 
