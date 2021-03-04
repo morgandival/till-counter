@@ -4,6 +4,7 @@
 
 .denom-label {
   display: inline-block;
+  text-align: left;
   width: 3em;
 }
 
@@ -15,4 +16,8 @@
 .denom-count {
   display: inline-block;
   width: 3em;
+}
+
+p {
+  text-align: center;
 }
