@@ -1,4 +1,5 @@
 import React from 'react';
+import Total from './Total';
 import './TillCounter.css';
 
 // Declare Props type
@@ -10,18 +11,23 @@ type Props = {
 function TillCounter (props: Props) {
 
   // state initialisation
-  const [total, setTotal] = React.useState<number>(0);
+  const [total, setTotal] = React.useState(0);
+  // let total: number = 0;
 
+  // initiliase storage
   let storage: {key: string, value: number}[] = [];
+
+  // fill storage with default values
+  props.denoms.forEach(x => storage.push({key: 'denom-' + x, value: 0}));
 
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     // set amount to number entered
-
+ 
     let x: string = event.target.id;
     let y: string = event.target.value;
-
-    console.log('Change:', x, y);
+ 
+    // console.log('Change:', x, y);
   }
 
   const handleBlur = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,25 +36,42 @@ function TillCounter (props: Props) {
     let x: string = event.target.id;
     let y: string = event.target.value;
 
-    console.log('Blur:', x, y);
+    // console.log('Blur:', x, y);
 
-    if (!storage.keys) {
-      storage.push({key: x, value: parseFloat(y)});
-    }
-    else {
-      
-    }
+    // get index of changed field
+    let index = storage.findIndex((obj => obj.key === x));
+
+    // set value of index
+    storage[index].value = parseFloat(y);
+    
+    let sum: number = 0;
+
+    // add them together
+    storage.forEach(obj => sum += obj.value);
+
+    console.log('Sum:', sum);
+
+    // total = sum;
+    setTotal(sum);
+    
+    console.log('Total:', total);
+    
+    /*
+    So here is where the system breaks down. If setTotal(sum) is uncommented
+    it will break the amount that is returned for sum. Perhaps passing the 'storage' array might solve this.
+    */
   }
 
-
+  // initialise denominations output array
   const outputs: any = [];
 
+  // fill outputs array
   props.denoms.forEach(function (value) {
 
     // initialise regex string
     let regex: string = "";
 
-    // check denomination against entered value
+    // check denomination against entered value to assign regex pattern for validation
     switch (value) {
       // $100
       case 100:
@@ -122,9 +145,7 @@ function TillCounter (props: Props) {
     <div className="tillcounter">
       {outputs}
       <hr />
-      <div className="total">
-        <p><b>Total:</b> <label className="total-label">${total.toFixed(2)}</label></p>
-      </div>
+      <Total total={total} />
     </div>
   );
 }
