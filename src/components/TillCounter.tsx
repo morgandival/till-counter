@@ -9,6 +9,18 @@ type Props = {
 // Main function
 function TillCounter(props: Props) {
   // state initialisation
+  const [denom01, setDenom01] = React.useState(0);
+  const [denom02, setDenom02] = React.useState(0);
+  const [denom03, setDenom03] = React.useState(0);
+  const [denom04, setDenom04] = React.useState(0);
+  const [denom05, setDenom05] = React.useState(0);
+  const [denom06, setDenom06] = React.useState(0);
+  const [denom07, setDenom07] = React.useState(0);
+  const [denom08, setDenom08] = React.useState(0);
+  const [denom09, setDenom09] = React.useState(0);
+  const [denom10, setDenom10] = React.useState(0);
+  const [denom11, setDenom11] = React.useState(0);
+
   const [total, setTotal] = React.useState(0);
   // let total: number = 0;
 
