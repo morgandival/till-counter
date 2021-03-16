@@ -1,5 +1,4 @@
 import React from 'react';
-import Total from './Total';
 import './TillCounter.css';
 
 // Declare Props type
@@ -145,7 +144,9 @@ function TillCounter (props: Props) {
     <div className="tillcounter">
       {outputs}
       <hr />
-      <Total total={total} />
+      <div className="total">
+        <p><b>Total:</b> <label className="total-label">${total.toFixed(2)}</label></p>
+    </div>
     </div>
   );
 }
