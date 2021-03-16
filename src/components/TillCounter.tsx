@@ -1,33 +1,31 @@
-import React from 'react';
-import './TillCounter.css';
+import React from "react";
+import "./TillCounter.css";
 
 // Declare Props type
 type Props = {
   denoms: Array<number>;
-}
+};
 
 // Main function
-function TillCounter (props: Props) {
-
+function TillCounter(props: Props) {
   // state initialisation
   const [total, setTotal] = React.useState(0);
   // let total: number = 0;
 
   // initiliase storage
-  let storage: {key: string, value: number}[] = [];
+  let storage: { key: string; value: number }[] = [];
 
   // fill storage with default values
-  props.denoms.forEach(x => storage.push({key: 'denom-' + x, value: 0}));
-
+  props.denoms.forEach((x) => storage.push({ key: "denom-" + x, value: 0 }));
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     // set amount to number entered
- 
+
     let x: string = event.target.id;
     let y: string = event.target.value;
- 
+
     // console.log('Change:', x, y);
-  }
+  };
 
   const handleBlur = (event: React.ChangeEvent<HTMLInputElement>) => {
     // set amount to number entered
@@ -38,35 +36,34 @@ function TillCounter (props: Props) {
     // console.log('Blur:', x, y);
 
     // get index of changed field
-    let index = storage.findIndex((obj => obj.key === x));
+    let index = storage.findIndex((obj) => obj.key === x);
 
     // set value of index
     storage[index].value = parseFloat(y);
-    
+
     let sum: number = 0;
 
     // add them together
-    storage.forEach(obj => sum += obj.value);
+    storage.forEach((obj) => (sum += obj.value));
 
-    console.log('Sum:', sum);
+    console.log("Sum:", sum);
 
     // total = sum;
     setTotal(sum);
-    
-    console.log('Total:', total);
-    
+
+    console.log("Total:", total);
+
     /*
     So here is where the system breaks down. If setTotal(sum) is uncommented
     it will break the amount that is returned for sum. Perhaps passing the 'storage' array might solve this.
     */
-  }
+  };
 
   // initialise denominations output array
   const outputs: any = [];
 
   // fill outputs array
   props.denoms.forEach(function (value) {
-
     // initialise regex string
     let regex: string = "";
 
@@ -101,15 +98,15 @@ function TillCounter (props: Props) {
         regex = "[0-9]+.[0]{2}";
         break;
       // $0.50
-      case 0.50:
+      case 0.5:
         regex = "[0-9]+.[05][0]";
         break;
       // $0.20
-      case 0.20:
+      case 0.2:
         regex = "[0-9]+.[02468][0]";
         break;
       // $0.10
-      case 0.10:
+      case 0.1:
         regex = "[0-9]+.[0-9][0]";
         break;
       // $0.05
@@ -123,7 +120,7 @@ function TillCounter (props: Props) {
       <div className="denomination">
         <label className="denom-label">${value.toFixed(2)}</label>
         <input
-          id={'denom-' + value}
+          id={"denom-" + value}
           type="text"
           className="denom-input"
           step={value}
@@ -132,21 +129,22 @@ function TillCounter (props: Props) {
           defaultValue="0.00"
           onChange={handleChange}
           onBlur={handleBlur}
-        >
-        </input>
+        ></input>
         <label className="denom-count">0</label>
-      </div>
-    )
+      </div>,
+    );
   });
 
-
-  return(
+  return (
     <div className="tillcounter">
       {outputs}
       <hr />
       <div className="total">
-        <p><b>Total:</b> <label className="total-label">${total.toFixed(2)}</label></p>
-    </div>
+        <p>
+          <b>Total:</b>{" "}
+          <label className="total-label">${total.toFixed(2)}</label>
+        </p>
+      </div>
     </div>
   );
 }
