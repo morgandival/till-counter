@@ -54,12 +54,14 @@ function TillCounter(props: Props) {
 
     // Check to see if there are array items to add together
     if (denoms.length > 0) {
-      // Set total
+      // Add denom values up
       const sum: number = denoms
         .map((a) => a.value)
         .reduce(function (a, b) {
           return a + b;
         });
+
+      // Push to usestate
       setTotal(sum);
     }
   };
