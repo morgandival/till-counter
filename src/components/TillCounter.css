@@ -17,3 +17,7 @@
   display: inline-block;
   width: 3em;
 }
+
+.total {
+  text-align: center;
+}
