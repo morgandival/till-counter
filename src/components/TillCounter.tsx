@@ -6,69 +6,62 @@ type Props = {
   denoms: Array<number>;
 };
 
+interface Denom {
+  denom: string;
+  value: number;
+}
+
 // Main function
 function TillCounter(props: Props) {
   // state initialisation
-  const [denom01, setDenom01] = React.useState(0);
-  const [denom02, setDenom02] = React.useState(0);
-  const [denom03, setDenom03] = React.useState(0);
-  const [denom04, setDenom04] = React.useState(0);
-  const [denom05, setDenom05] = React.useState(0);
-  const [denom06, setDenom06] = React.useState(0);
-  const [denom07, setDenom07] = React.useState(0);
-  const [denom08, setDenom08] = React.useState(0);
-  const [denom09, setDenom09] = React.useState(0);
-  const [denom10, setDenom10] = React.useState(0);
-  const [denom11, setDenom11] = React.useState(0);
-
+  const [denoms, setDenoms] = React.useState<Denom[]>([]);
   const [total, setTotal] = React.useState(0);
-  // let total: number = 0;
 
-  // initiliase storage
-  let storage: { key: string; value: number }[] = [];
-
-  // fill storage with default values
-  props.denoms.forEach((x) => storage.push({ key: "denom-" + x, value: 0 }));
-
+  // Handles what happens when the input field value is altered
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     // set amount to number entered
-
-    let x: string = event.target.id;
-    let y: string = event.target.value;
-
-    // console.log('Change:', x, y);
+    //let x: string = event.target.id;
+    //let y: number = parseFloat(event.target.value);
+    //console.log("Change:", x, y);
   };
 
+  // Handles what happens when the input field is left
   const handleBlur = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // set amount to number entered
+    // Extract input ID and value
+    let denom: string = event.target.id;
+    let value: number = parseFloat(event.target.value);
 
-    let x: string = event.target.id;
-    let y: string = event.target.value;
+    // Grab index of denom if it exists in the denoms array
+    const index = denoms.findIndex((x) => x.denom === denom);
 
-    // console.log('Blur:', x, y);
+    // If index does not exist
+    if (index === -1) {
+      // Push new denom and value to end of denoms array
+      setDenoms([...denoms, { denom, value }]);
+    }
 
-    // get index of changed field
-    let index = storage.findIndex((obj) => obj.key === x);
+    // If index exists...
+    if (index > -1) {
+      // Update values of specific index
+      setDenoms([
+        ...denoms.slice(0, index),
+        { denom, value },
+        ...denoms.slice(index + 1),
+      ]);
+    }
 
-    // set value of index
-    storage[index].value = parseFloat(y);
+    // console.log(denoms);
 
-    let sum: number = 0;
-
-    // add them together
-    storage.forEach((obj) => (sum += obj.value));
-
-    console.log("Sum:", sum);
-
-    // total = sum;
-    setTotal(sum);
-
-    console.log("Total:", total);
-
-    /*
-    So here is where the system breaks down. If setTotal(sum) is uncommented
-    it will break the amount that is returned for sum. Perhaps passing the 'storage' array might solve this.
-    */
+    // Check to see if there are array items to add together
+    if (denoms.length > 0) {
+      // Set total
+      const sum: number = denoms
+        .map((a) => a.value)
+        .reduce(function (a, b) {
+          return a + b;
+        });
+      setTotal(sum);
+    }
   };
 
   // initialise denominations output array
