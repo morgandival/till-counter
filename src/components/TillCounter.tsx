@@ -19,10 +19,41 @@ function TillCounter(props: Props) {
 
   // Handles what happens when the input field value is altered
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // set amount to number entered
-    //let x: string = event.target.id;
-    //let y: number = parseFloat(event.target.value);
-    //console.log("Change:", x, y);
+    // Extract input ID and value
+    let denom: string = event.target.id;
+    let value: number = parseFloat(event.target.value);
+
+    // Grab index of denom if it exists in the denoms array
+    const index = denoms.findIndex((x) => x.denom === denom);
+
+    // If index does not exist
+    if (index === -1) {
+      // Push new denom and value to end of denoms array
+      setDenoms([...denoms, { denom, value }]);
+    }
+
+    // If index exists...
+    if (index > -1) {
+      // Update values of specific index
+      setDenoms([
+        ...denoms.slice(0, index),
+        { denom, value },
+        ...denoms.slice(index + 1),
+      ]);
+    }
+
+    // Check to see if there are array items to add together
+    if (denoms.length > 0) {
+      // Add denom values up
+      const sum: number = denoms
+        .map((a) => a.value)
+        .reduce(function (a, b) {
+          return a + b;
+        });
+
+      // Push to usestate
+      setTotal(sum);
+    }
   };
 
   // Handles what happens when the input field is left
@@ -49,8 +80,6 @@ function TillCounter(props: Props) {
         ...denoms.slice(index + 1),
       ]);
     }
-
-    // console.log(denoms);
 
     // Check to see if there are array items to add together
     if (denoms.length > 0) {
@@ -148,8 +177,7 @@ function TillCounter(props: Props) {
       <hr />
       <div className="total">
         <p>
-          <b>Total:</b>{" "}
-          <label className="total-label">${total.toFixed(2)}</label>
+          <b>Total:</b> <span className="total-span">${total.toFixed(2)}</span>
         </p>
       </div>
     </div>
