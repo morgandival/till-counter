@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/till-counter/static/css/main.0a25ef93.chunk.css",
+    "main.js": "/till-counter/static/js/main.d23d0dbd.chunk.js",
+    "main.js.map": "/till-counter/static/js/main.d23d0dbd.chunk.js.map",
+    "runtime-main.js": "/till-counter/static/js/runtime-main.7e729b00.js",
+    "runtime-main.js.map": "/till-counter/static/js/runtime-main.7e729b00.js.map",
+    "static/js/2.36e086e0.chunk.js": "/till-counter/static/js/2.36e086e0.chunk.js",
+    "static/js/2.36e086e0.chunk.js.map": "/till-counter/static/js/2.36e086e0.chunk.js.map",
+    "index.html": "/till-counter/index.html",
+    "static/css/main.0a25ef93.chunk.css.map": "/till-counter/static/css/main.0a25ef93.chunk.css.map",
+    "static/js/2.36e086e0.chunk.js.LICENSE.txt": "/till-counter/static/js/2.36e086e0.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7e729b00.js",
+    "static/js/2.36e086e0.chunk.js",
+    "static/css/main.0a25ef93.chunk.css",
+    "static/js/main.d23d0dbd.chunk.js"
+  ]
+}
