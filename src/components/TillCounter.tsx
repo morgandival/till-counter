@@ -1,5 +1,4 @@
 import React from "react";
-import "./TillCounter.css";
 
 // Declare Props type
 type Props = {
@@ -45,6 +44,12 @@ function TillCounter(props: Props) {
 
   // Handles what happens when the input field is left
   const handleBlur = (event: React.ChangeEvent<HTMLInputElement>) => {
+    let x: number = 0;
+
+    // Extract input ID and value
+    let denom: string = event.target.id;
+    let value: number = parseFloat(event.target.value);
+
     // Check to see if there are array items to add together
     if (denoms.length > 0) {
       // Add denom values up
@@ -130,7 +135,9 @@ function TillCounter(props: Props) {
           onChange={handleChange}
           onBlur={handleBlur}
         ></input>
-        <label className="denom-count">0</label>
+        <label id={"count-" + value} className="denom-count">
+          0
+        </label>
       </div>,
     );
   });

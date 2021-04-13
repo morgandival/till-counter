@@ -1,4 +1,4 @@
-import "./Header.css";
+import React from "react";
 
 type Props = {
   title: string;

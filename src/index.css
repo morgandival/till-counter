@@ -6,3 +6,32 @@
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.header {
+  padding: 1em;
+  text-align: center;
+}
+
+.denomination {
+  text-align: center;
+}
+
+.denom-label {
+  display: inline-block;
+  text-align: left;
+  width: 3em;
+}
+
+.denom-input {
+  margin: 0 1em 0 1em;
+  text-align: right;
+}
+
+.denom-count {
+  display: inline-block;
+  width: 3em;
+}
+
+.total {
+  text-align: center;
+}
