@@ -19,8 +19,8 @@ function TillCounter(props: Props) {
   // Handles what happens when the input field value is altered
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     // Extract input ID and value
-    let denom: string = event.target.id;
-    let value: number = parseFloat(event.target.value);
+    const denom: string = event.target.id;
+    const value: number = parseFloat(event.target.value);
 
     // Grab index of denom if it exists in the denoms array
     const index = denoms.findIndex((x) => x.denom === denom);
@@ -44,12 +44,6 @@ function TillCounter(props: Props) {
 
   // Handles what happens when the input field is left
   const handleBlur = (event: React.ChangeEvent<HTMLInputElement>) => {
-    let x: number = 0;
-
-    // Extract input ID and value
-    let denom: string = event.target.id;
-    let value: number = parseFloat(event.target.value);
-
     // Check to see if there are array items to add together
     if (denoms.length > 0) {
       // Add denom values up
