@@ -28,17 +28,21 @@ function TillCounter(props: Props) {
     // If index does not exist...
     if (index === -1) {
       // Push new denom and value to end of denoms array
-      setDenoms([...denoms, { denom, value }]);
+      setDenoms((oldDenoms) => {
+        return [...oldDenoms, { denom, value }];
+      });
     }
 
     // If index exists...
     if (index > -1) {
       // Update values of specific index
-      setDenoms([
-        ...denoms.slice(0, index),
-        { denom, value },
-        ...denoms.slice(index + 1),
-      ]);
+      setDenoms((oldDenoms) => {
+        return [
+          ...oldDenoms.slice(0, index),
+          { denom, value },
+          ...oldDenoms.slice(index + 1),
+        ];
+      });
     }
   };
 
@@ -46,23 +50,27 @@ function TillCounter(props: Props) {
   const handleBlur = (event: React.ChangeEvent<HTMLInputElement>) => {
     // Check to see if there are array items to add together
     if (denoms.length > 0) {
-      // Add denom values up
-      const sum: number = denoms
-        .map((a) => a.value)
-        .reduce(function (a, b) {
-          return a + b;
-        });
-
       // Push to usestate
-      setTotal(sum);
+      setTotal((oldTotal) => {
+        return addDenomValues();
+      });
     }
   };
+
+  // This function adds the values of the denoms array together and returns the total
+  function addDenomValues() {
+    return denoms
+      .map((a) => a.value)
+      .reduce(function (a, b) {
+        return a + b;
+      });
+  }
 
   // initialise denominations output array
   const outputs: any = [];
 
   // fill outputs array
-  props.denoms.forEach(function (value) {
+  props.denoms.forEach((value) => {
     // initialise regex string
     let regex: string = "";
 
@@ -116,7 +124,7 @@ function TillCounter(props: Props) {
 
     // add elements to array
     outputs.push(
-      <div className="denomination">
+      <div className="denomination" key={value}>
         <label className="denom-label">${value.toFixed(2)}</label>
         <input
           id={"denom-" + value}
