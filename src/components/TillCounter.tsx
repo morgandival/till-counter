@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 // Declare Props type
 type Props = {
@@ -40,7 +40,7 @@ function TillCounter(props: Props) {
         return [
           ...oldDenoms.slice(0, index),
           { denom, value },
-          ...oldDenoms.slice(index + 1),
+          ...oldDenoms.slice(index + 1)
         ];
       });
     }
@@ -72,53 +72,53 @@ function TillCounter(props: Props) {
   // fill outputs array
   props.denoms.forEach((value) => {
     // initialise regex string
-    let regex: string = "";
+    let regex: string = '';
 
     // check denomination against entered value to assign regex pattern for validation
     switch (value) {
       // $100
       case 100:
-        regex = "([0-9]*[0]{2}|0).[0]{2}";
+        regex = '([0-9]*[0]{2}|0).[0]{2}';
         break;
       // $50
       case 50:
-        regex = "([0-9]*[05]{1}[0]|0).[0]{2}";
+        regex = '([0-9]*[05]{1}[0]|0).[0]{2}';
         break;
       // $20
       case 20:
-        regex = "([0-9]*[02468]{1}[0]|0).[0]{2}";
+        regex = '([0-9]*[02468]{1}[0]|0).[0]{2}';
         break;
       // $10
       case 10:
-        regex = "[0-9]*[0].[0]{2}";
+        regex = '[0-9]*[0].[0]{2}';
         break;
       // $5
       case 5:
-        regex = "[0-9]*[05].[0]{2}";
+        regex = '[0-9]*[05].[0]{2}';
         break;
       // $2
       case 2:
-        regex = "[0-9]*[02468].[0]{2}";
+        regex = '[0-9]*[02468].[0]{2}';
         break;
       // $1
       case 1:
-        regex = "[0-9]+.[0]{2}";
+        regex = '[0-9]+.[0]{2}';
         break;
       // $0.50
       case 0.5:
-        regex = "[0-9]+.[05][0]";
+        regex = '[0-9]+.[05][0]';
         break;
       // $0.20
       case 0.2:
-        regex = "[0-9]+.[02468][0]";
+        regex = '[0-9]+.[02468][0]';
         break;
       // $0.10
       case 0.1:
-        regex = "[0-9]+.[0-9][0]";
+        regex = '[0-9]+.[0-9][0]';
         break;
       // $0.05
       case 0.05:
-        regex = "[0-9]+.[0-9][05]";
+        regex = '[0-9]+.[0-9][05]';
         break;
     }
 
@@ -127,7 +127,7 @@ function TillCounter(props: Props) {
       <div className="denomination" key={value}>
         <label className="denom-label">${value.toFixed(2)}</label>
         <input
-          id={"denom-" + value}
+          id={'denom-' + value}
           type="text"
           className="denom-input"
           step={value}
@@ -137,10 +137,10 @@ function TillCounter(props: Props) {
           onChange={handleChange}
           onBlur={handleBlur}
         ></input>
-        <label id={"count-" + value} className="denom-count">
+        <label id={'count-' + value} className="denom-count">
           0
         </label>
-      </div>,
+      </div>
     );
   });
 
