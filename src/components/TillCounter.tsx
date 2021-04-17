@@ -1,4 +1,5 @@
 import React from 'react';
+import Denomination from '../components/Denomination';
 
 // Declare Props type
 type Props = {
@@ -140,6 +141,7 @@ function TillCounter(props: Props) {
         <label id={'count-' + value} className="denom-count">
           0
         </label>
+        <Denomination denom={value} />
       </div>
     );
   });
