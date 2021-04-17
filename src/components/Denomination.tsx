@@ -1,11 +1,11 @@
 import React from 'react';
 
 type Props = {
-  denom: number;
+  denomination: number;
 };
 
 function Denomination(props: Props) {
-  return <div>{props.denom}</div>;
+  return <div>{props.denomination}</div>;
 }
 
 export default Denomination;
