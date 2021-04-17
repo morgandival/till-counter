@@ -8,10 +8,11 @@ A basic React app that lets you count money!
 
 **Tech used:** React, TypeScript
 
-This app is built in React using TypeScript to help me add up all my dollarydoos! By using React states, it saves the values entered and updates the total at the bottom.
+This app is built in React and TypeScript to help me add up all of my dollarydoos! It uses React states to save the values entered and maintains a running total at the bottom.
 
 ## Upgrades:
 
+- [ ] Separation of denomination fields into their own components
 - [ ] Better handling of invalid values
 
 ## Lessons Learned:
