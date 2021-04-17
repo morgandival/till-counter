@@ -141,7 +141,7 @@ function TillCounter(props: Props) {
         <label id={'count-' + value} className="denom-count">
           0
         </label>
-        <Denomination denomination={value} />
+        <Denomination denomination={value} regex={regex} />
       </div>
     );
   });
