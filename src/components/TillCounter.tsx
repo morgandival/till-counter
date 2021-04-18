@@ -123,7 +123,16 @@ function TillCounter(props: Props) {
         break;
     }
 
-    // add elements to array
+    // NEW: add Denominations as child components
+    // outputs.push(
+    //   <Denomination
+    //     denomination={value}
+    //     regex={regex}
+    //     //onChange={handleChange}
+    //   />
+    // );
+
+    // OLD: add elements to array
     outputs.push(
       <div className="denomination" key={value}>
         <label className="denom-label">${value.toFixed(2)}</label>
@@ -141,7 +150,6 @@ function TillCounter(props: Props) {
         <label id={'count-' + value} className="denom-count">
           0
         </label>
-        <Denomination denomination={value} regex={regex} />
       </div>
     );
   });
