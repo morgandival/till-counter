@@ -1,5 +1,5 @@
 import React from 'react';
-import Denomination from '../components/Denomination';
+// import Denomination from '../components/Denomination';
 
 // Declare Props type
 type Props = {
@@ -67,15 +67,9 @@ function TillCounter(props: Props) {
       });
   }
 
-  // initialise denominations output array
-  const outputs: any = [];
-
-  // fill outputs array
-  props.denoms.forEach((value) => {
-    // initialise regex string
+  // Function returns a regex string used to validate the inputs
+  function getRegexString(value: number) {
     let regex: string = '';
-
-    // check denomination against entered value to assign regex pattern for validation
     switch (value) {
       // $100
       case 100:
@@ -123,11 +117,20 @@ function TillCounter(props: Props) {
         break;
     }
 
+    // Return regex string
+    return regex;
+  }
+
+  // initialise denominations output array
+  const outputs: any = [];
+
+  // fill outputs array
+  props.denoms.forEach((value) => {
     // NEW: add Denominations as child components
     // outputs.push(
     //   <Denomination
     //     denomination={value}
-    //     regex={regex}
+    //     regex={getRegexString(value)}
     //     //onChange={handleChange}
     //   />
     // );
@@ -142,7 +145,7 @@ function TillCounter(props: Props) {
           className="denom-input"
           step={value}
           min="0"
-          pattern={regex}
+          pattern={getRegexString(value)}
           defaultValue="0.00"
           onChange={handleChange}
           onBlur={handleBlur}
