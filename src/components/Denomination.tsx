@@ -18,7 +18,7 @@ function Denomination(props: Props) {
         pattern={props.regex}
         defaultValue="0.00"
         //onChange={handleChange}
-        //onBlur={handleBlur  }
+        //onBlur={handleBlur}
       ></input>
       <label id={'count-' + props.denomination} className="denom-count">
         0

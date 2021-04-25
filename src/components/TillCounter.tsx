@@ -132,6 +132,7 @@ function TillCounter(props: Props) {
     //     denomination={value}
     //     regex={getRegexString(value)}
     //     //onChange={handleChange}
+    //     //onBlur=(handleBlur)
     //   />
     // );
 
