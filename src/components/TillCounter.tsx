@@ -119,12 +119,12 @@ function TillCounter(props: Props) {
     return regex;
   }
 
-  // initialise denominations output array
+  // Initialise denominations output array
   const outputs: any = [];
 
-  // fill outputs array
+  // Fill outputs array
   props.denoms.forEach((value) => {
-    // NEW: add Denominations as child components
+    // Add Denominations as child components
     outputs.push(
       <Denomination
         denomination={value}
