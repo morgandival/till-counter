@@ -1,5 +1,5 @@
 import React from 'react';
-// import Denomination from '../components/Denomination';
+import Denomination from '../components/Denomination';
 
 // Declare Props type
 type Props = {
@@ -67,7 +67,7 @@ function TillCounter(props: Props) {
       });
   }
 
-  // Function returns a regex string used to validate the inputs
+  // Returns a regex string based on the denomination value and is used to populate the inputs pattern attribute for validation
   function getRegexString(value: number) {
     let regex: string = '';
     switch (value) {
@@ -116,8 +116,6 @@ function TillCounter(props: Props) {
         regex = '[0-9]+.[0-9][05]';
         break;
     }
-
-    // Return regex string
     return regex;
   }
 
@@ -127,33 +125,13 @@ function TillCounter(props: Props) {
   // fill outputs array
   props.denoms.forEach((value) => {
     // NEW: add Denominations as child components
-    // outputs.push(
-    //   <Denomination
-    //     denomination={value}
-    //     regex={getRegexString(value)}
-    //     //onChange={handleChange}
-    //   />
-    // );
-
-    // OLD: add elements to array
     outputs.push(
-      <div className="denomination" key={value}>
-        <label className="denom-label">${value.toFixed(2)}</label>
-        <input
-          id={'denom-' + value}
-          type="text"
-          className="denom-input"
-          step={value}
-          min="0"
-          pattern={getRegexString(value)}
-          defaultValue="0.00"
-          onChange={handleChange}
-          onBlur={handleBlur}
-        ></input>
-        <label id={'count-' + value} className="denom-count">
-          0
-        </label>
-      </div>
+      <Denomination
+        denomination={value}
+        regex={getRegexString(value)}
+        onChange={handleChange}
+        onBlur={handleBlur}
+      />
     );
   });
 

@@ -3,6 +3,8 @@ import React from 'react';
 type Props = {
   denomination: number;
   regex: string;
+  onChange: any;
+  onBlur: any;
 };
 
 function Denomination(props: Props) {
@@ -17,8 +19,8 @@ function Denomination(props: Props) {
         min="0"
         pattern={props.regex}
         defaultValue="0.00"
-        //onChange={handleChange}
-        //onBlur={handleBlur  }
+        onChange={props.onChange}
+        onBlur={props.onBlur}
       ></input>
       <label id={'count-' + props.denomination} className="denom-count">
         0
