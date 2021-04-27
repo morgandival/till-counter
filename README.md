@@ -12,9 +12,11 @@ This app is built in React and TypeScript to help me add up all of my dollarydoo
 
 ## Upgrades:
 
-- [ ] Separation of denomination fields into their own components
+- [x] Separation of denomination fields into their own child components
 - [ ] Better handling of invalid values
 
 ## Lessons Learned:
 
 React states are tricky, but it is good to keep in mind that changing the state doesn't force a re-render of the components.
+
+Also, passing props between parent and child components is not as difficult as it looks.
