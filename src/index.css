@@ -4,7 +4,7 @@
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .header {
@@ -34,4 +34,8 @@ body {
 
 .total {
   text-align: center;
+}
+
+input:invalid {
+  box-shadow: 0 0 5px 1px red;
 }
