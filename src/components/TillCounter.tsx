@@ -12,7 +12,7 @@ interface Denom {
 }
 
 // Main function
-function TillCounter(props: Props) {
+function TillCounter(props: Props): JSX.Element {
   // state initialisation
   const [denoms, setDenoms] = React.useState<Denom[]>([]);
   const [total, setTotal] = React.useState(0);
@@ -48,11 +48,12 @@ function TillCounter(props: Props) {
   };
 
   // Handles what happens when the input field is left
-  const handleBlur = (event: React.ChangeEvent<HTMLInputElement>) => {
+  // const handleBlur = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleBlur = () => {
     // Check to see if there are array items to add together
     if (denoms.length > 0) {
       // Push to usestate
-      setTotal((oldTotal) => {
+      setTotal(() => {
         return addDenomValues();
       });
     }
@@ -69,7 +70,7 @@ function TillCounter(props: Props) {
 
   // Returns a regex string based on the denomination value and is used to populate the inputs pattern attribute for validation
   function getRegexString(value: number) {
-    let regex: string = '';
+    let regex = '';
     switch (value) {
       // $100
       case 100:
@@ -120,13 +121,14 @@ function TillCounter(props: Props) {
   }
 
   // Initialise denominations output array
-  const outputs: any = [];
+  const outputs: Array<JSX.Element> = [];
 
   // Fill outputs array
   props.denoms.forEach((value) => {
     // Add Denominations as child components
     outputs.push(
       <Denomination
+        key={`denom-${value}`}
         denomination={value}
         regex={getRegexString(value)}
         onChange={handleChange}

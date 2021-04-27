@@ -3,7 +3,7 @@ import './App.css';
 import Header from './components/Header';
 import TillCounter from './components/TillCounter';
 
-function App() {
+function App(): JSX.Element {
   return (
     <div className="App">
       <Header title="Till Counter" />

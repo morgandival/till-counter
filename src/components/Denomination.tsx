@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { ChangeEventHandler, FocusEventHandler } from 'react';
 
 type Props = {
   denomination: number;
   regex: string;
-  onChange: any;
-  onBlur: any;
+  onChange: ChangeEventHandler;
+  onBlur: FocusEventHandler;
 };
 
-function Denomination(props: Props) {
+function Denomination(props: Props): JSX.Element {
   return (
-    <div className="denomination" key={props.denomination}>
+    <div className="denomination">
       <label className="denom-label">${props.denomination.toFixed(2)}</label>
       <input
         id={'denom-' + props.denomination}
