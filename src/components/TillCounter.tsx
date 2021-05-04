@@ -21,7 +21,7 @@ function TillCounter(props: Props): JSX.Element {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     // Extract input ID and value
     const denom: string = event.target.id;
-    const value: number = parseFloat(event.target.value);
+    const value: number = parseFloat(event.target.value) * 100;
 
     // Grab index of denom if it exists in the denoms array
     const index = denoms.findIndex((x) => x.denom === denom);
@@ -48,7 +48,6 @@ function TillCounter(props: Props): JSX.Element {
   };
 
   // Handles what happens when the input field is left
-  // const handleBlur = (event: React.ChangeEvent<HTMLInputElement>) => {
   const handleBlur = () => {
     // Check to see if there are array items to add together
     if (denoms.length > 0) {
@@ -57,6 +56,8 @@ function TillCounter(props: Props): JSX.Element {
         return addDenomValues();
       });
     }
+
+    console.log(denoms);
   };
 
   // This function adds the values of the denoms array together and returns the total
@@ -120,16 +121,38 @@ function TillCounter(props: Props): JSX.Element {
     return regex;
   }
 
+  // Returns count of specified denomination
+  function getCount(index: number, value: number): number {
+    // If index does not exist...
+    if (index < 0) {
+      return 0;
+    }
+
+    // If denomination value is not cleanly divisible...
+    if (((denoms[index].value * 100) % (value * 100)) / 100 != 0) {
+      return 0;
+    }
+
+    // Finally, return only whole number
+    return denoms[index].value / value / 100;
+  }
+
   // Initialise denominations output array
   const outputs: Array<JSX.Element> = [];
 
   // Fill outputs array
   props.denoms.forEach((value) => {
+    // Get denoms index
+    const index = denoms.findIndex(
+      (x) => x.denom === `denom-${value.toString()}`
+    );
+
     // Add Denominations as child components
     outputs.push(
       <Denomination
         key={`denom-${value}`}
         denomination={value}
+        count={getCount(index, value)}
         regex={getRegexString(value)}
         onChange={handleChange}
         onBlur={handleBlur}
@@ -143,7 +166,8 @@ function TillCounter(props: Props): JSX.Element {
       <hr />
       <div className="total">
         <p>
-          <b>Total:</b> <span className="total-span">${total.toFixed(2)}</span>
+          <b>Total:</b>{' '}
+          <span className="total-span">${(total / 100).toFixed(2)}</span>
         </p>
       </div>
     </div>
