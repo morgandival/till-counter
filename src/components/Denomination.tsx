@@ -3,6 +3,7 @@ import React, { ChangeEventHandler, FocusEventHandler } from 'react';
 type Props = {
   denomination: number;
   regex: string;
+  count: number;
   onChange: ChangeEventHandler;
   onBlur: FocusEventHandler;
 };
@@ -23,7 +24,7 @@ function Denomination(props: Props): JSX.Element {
         onBlur={props.onBlur}
       ></input>
       <label id={'count-' + props.denomination} className="denom-count">
-        0
+        {props.count}
       </label>
     </div>
   );
