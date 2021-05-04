@@ -56,8 +56,6 @@ function TillCounter(props: Props): JSX.Element {
         return addDenomValues();
       });
     }
-
-    console.log(denoms);
   };
 
   // This function adds the values of the denoms array together and returns the total
