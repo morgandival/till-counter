@@ -129,7 +129,7 @@ function TillCounter(props: Props): JSX.Element {
     }
 
     // If denomination value is not cleanly divisible...
-    if (((denoms[index].value * 100) % (value * 100)) / 100 != 0) {
+    if ((denoms[index].value % (value * 100)) / 100 != 0) {
       return 0;
     }
 
