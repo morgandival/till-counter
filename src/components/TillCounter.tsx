@@ -1,5 +1,4 @@
 import React from 'react';
-import Currency from './Currency';
 import Denomination from '../components/Denomination';
 
 // Declare Props type
@@ -161,7 +160,6 @@ function TillCounter(props: Props): JSX.Element {
 
   return (
     <div className="tillcounter">
-      <Currency />
       {outputs}
       <hr />
       <div className="total">

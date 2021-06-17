@@ -12,6 +12,12 @@ body {
   text-align: center;
 }
 
+.currency {
+  margin: 0.2em;
+  padding: 0.2em;
+  text-align: center;
+}
+
 .denomination {
   text-align: center;
 }
