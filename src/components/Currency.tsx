@@ -1,20 +1,21 @@
 import React from 'react';
 
 function Currency(): JSX.Element {
-  // Initialise currency string
+  // Initialise currency
   const [currency, setCurrency] = React.useState('AUD');
+
+  console.log(currency);
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setCurrency(() => {
       return event.target.value;
     });
-    console.log(currency);
   };
 
   return (
-    <div className="currency" id="currency">
+    <div className="currency">
       <label>Choose a currency: </label>
-      <select onChange={handleChange}>
+      <select id="currency" onChange={handleChange}>
         <option value="AUD">AUD</option>
         <option value="NZD">NZD</option>
         <option value="USD">USD</option>
