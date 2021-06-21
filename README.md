@@ -1,6 +1,6 @@
 # Till Counter
 
-A basic React app that lets you count Australian money!
+A basic React app that lets you count money!
 
 **Link to project:** https://morgandival.github.io/till-counter/
 
@@ -19,12 +19,14 @@ It uses React states to keep track of the values entered, display a count of eac
 - [x] Denomination counts based on amounts entered
 - [x] Separation of denomination fields into their own child components
 - [x] Better handling and display of invalid values
-- [ ] Alternative currencies???
+- [x] Alternative currencies!!! (AUD, NZD, USD)
 
 ## Lessons Learned:
 
-React states are tricky, but it is good to keep in mind that changing the state doesn't force a re-render of the components.
+React states are tricky, but it is good to keep in mind that changing the state doesn't immediately force a re-render of the components.
 
 Also, passing props between parent and child components is not as difficult as it looks, so long as the types match up.
 
-It is a good idea to keep in mind when dealing with currency to work with integers and divide when necessary
+Lifting states up is also a fairly straight forward process, again keeping in mind the types.
+
+It is a good idea to keep in mind when dealing with currency to work with integers and divide when necessary.
