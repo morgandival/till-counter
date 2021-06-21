@@ -1,13 +1,14 @@
 import React from 'react';
 
-function Currency(): JSX.Element {
-  // Initialise currency
-  const [currency, setCurrency] = React.useState('AUD');
+type Props = {
+  currency: string;
+  setCurrency: React.Dispatch<React.SetStateAction<string>>;
+};
 
-  console.log(currency);
-
+function Currency(props: Props): JSX.Element {
+  // Handles what happens when currency is changed...
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setCurrency(() => {
+    props.setCurrency(() => {
       return event.target.value;
     });
   };
