@@ -58,7 +58,7 @@ function TillCounter(props: Props): JSX.Element {
     }
   };
 
-  // This function adds the values of the denoms array together and returns the total
+  // Adds the values of the denoms array together and returns the total
   function addDenomValues() {
     return denoms
       .map((a) => a.value)
@@ -73,47 +73,55 @@ function TillCounter(props: Props): JSX.Element {
     switch (value) {
       // $100
       case 100:
-        regex = '([0-9]*[0]{2}|0).[0]{2}';
+        regex = '([0-9]*[0]{2}|0).(00)';
         break;
       // $50
       case 50:
-        regex = '([0-9]*[05]{1}[0]|0).[0]{2}';
+        regex = '([0-9]*[05]{1}[0]|0).(00)';
         break;
       // $20
       case 20:
-        regex = '([0-9]*[02468]{1}[0]|0).[0]{2}';
+        regex = '([0-9]*[02468]{1}[0]|0).(00)';
         break;
       // $10
       case 10:
-        regex = '[0-9]*[0].[0]{2}';
+        regex = '[0-9]*[0].(00)';
         break;
       // $5
       case 5:
-        regex = '[0-9]*[05].[0]{2}';
+        regex = '[0-9]*[05].(00)';
         break;
       // $2
       case 2:
-        regex = '[0-9]*[02468].[0]{2}';
+        regex = '[0-9]*[02468].(00)';
         break;
       // $1
       case 1:
-        regex = '[0-9]+.[0]{2}';
+        regex = '[0-9]+.(00)';
         break;
       // $0.50
       case 0.5:
-        regex = '[0-9]+.[05][0]';
+        regex = '[0-9]+.(00|50)';
+        break;
+      // $0.25
+      case 0.25:
+        regex = '[0-9]+.(00|25|50|75)';
         break;
       // $0.20
       case 0.2:
-        regex = '[0-9]+.[02468][0]';
+        regex = '[0-9]+.[02468](0)';
         break;
       // $0.10
       case 0.1:
-        regex = '[0-9]+.[0-9][0]';
+        regex = '[0-9]+.[0-9](0)';
         break;
       // $0.05
       case 0.05:
-        regex = '[0-9]+.[0-9][05]';
+        regex = '[0-9]+.[0-9](0|5)';
+        break;
+      // $0.05
+      case 0.01:
+        regex = '[0-9]+.[0-9]{2}';
         break;
     }
     return regex;
