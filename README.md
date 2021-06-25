@@ -20,13 +20,12 @@ It uses React states to keep track of the values entered, display a count of eac
 - [x] Separation of denomination fields into their own child components
 - [x] Better handling and display of invalid values
 - [x] Alternative currencies!!! (AUD, NZD, USD)
+- [ ] Alternative currencies 2.0: change the symbol for currencies that don't use dollars
+- [ ] Reset button: click to reset to 0.00 so you can start again without refreshing.
 
 ## Lessons Learned:
 
-React states are tricky, but it is good to keep in mind that changing the state doesn't immediately force a re-render of the components.
-
-Also, passing props between parent and child components is not as difficult as it looks, so long as the types match up.
-
-Lifting states up is also a fairly straight forward process, again keeping in mind the types.
-
-It is a good idea to keep in mind when dealing with currency to work with integers and divide when necessary.
+- React states are tricky, but it is good to keep in mind that changing the state doesn't immediately force a re-render of the components.
+- Also, passing props between parent and child components is not as difficult as it looks, so long as the types match up.
+- Lifting states up is also a fairly straight forward process, again keeping in mind the types.
+- It is a good idea to keep in mind when dealing with currency to work with integers and divide when necessary.
