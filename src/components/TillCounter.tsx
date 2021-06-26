@@ -80,7 +80,7 @@ function TillCounter(props: Props): JSX.Element {
       case 500:
         regex = '([0-9]*[05]00|0).(00)';
         break;
-      // $100
+      // $200
       case 200:
         regex = '([0-9]*[02468]00|0).(00)';
         break;
