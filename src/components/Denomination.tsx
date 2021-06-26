@@ -1,6 +1,7 @@
 import React, { ChangeEventHandler, FocusEventHandler } from 'react';
 
 type Props = {
+  symbol: string;
   denomination: number;
   regex: string;
   count: number;
@@ -11,7 +12,10 @@ type Props = {
 function Denomination(props: Props): JSX.Element {
   return (
     <div className="denomination">
-      <label className="denom-label">${props.denomination.toFixed(2)}</label>
+      <label className="denom-label">
+        {props.symbol}
+        {props.denomination.toFixed(2)}
+      </label>
       <input
         id={'denom-' + props.denomination}
         type="text"
