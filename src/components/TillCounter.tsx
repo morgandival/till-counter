@@ -3,8 +3,13 @@ import Denomination from '../components/Denomination';
 
 // Declare Props type
 type Props = {
-  denoms: Array<number>;
+  denoms: Currency;
 };
+
+interface Currency {
+  symbol: string;
+  value: Array<number>;
+}
 
 interface Denom {
   denom: string;
@@ -71,21 +76,29 @@ function TillCounter(props: Props): JSX.Element {
   function getRegexString(value: number) {
     let regex = '';
     switch (value) {
+      // $500
+      case 500:
+        regex = '([0-9]*[05]00|0).(00)';
+        break;
+      // $100
+      case 200:
+        regex = '([0-9]*[02468]00|0).(00)';
+        break;
       // $100
       case 100:
-        regex = '([0-9]*[0]{2}|0).(00)';
+        regex = '([0-9]*00|0).(00)';
         break;
       // $50
       case 50:
-        regex = '([0-9]*[05]{1}[0]|0).(00)';
+        regex = '([0-9]*[05]0|0).(00)';
         break;
       // $20
       case 20:
-        regex = '([0-9]*[02468]{1}[0]|0).(00)';
+        regex = '([0-9]*[02468]0|0).(00)';
         break;
       // $10
       case 10:
-        regex = '[0-9]*[0].(00)';
+        regex = '[0-9]*0.(00)';
         break;
       // $5
       case 5:
@@ -119,7 +132,11 @@ function TillCounter(props: Props): JSX.Element {
       case 0.05:
         regex = '[0-9]+.[0-9](0|5)';
         break;
-      // $0.05
+      // $0.02
+      case 0.02:
+        regex = '[0-9]+.[0-9][02468]';
+        break;
+      // $0.01:
       case 0.01:
         regex = '[0-9]+.[0-9]{2}';
         break;
@@ -147,7 +164,7 @@ function TillCounter(props: Props): JSX.Element {
   const outputs: Array<JSX.Element> = [];
 
   // Fill outputs array
-  props.denoms.forEach((value) => {
+  props.denoms.value.forEach((value) => {
     // Get denoms index
     const index = denoms.findIndex(
       (x) => x.denom === `denom-${value.toString()}`
@@ -157,6 +174,7 @@ function TillCounter(props: Props): JSX.Element {
     outputs.push(
       <Denomination
         key={`denom-${value}`}
+        symbol={props.denoms.symbol}
         denomination={value}
         count={getCount(index, value)}
         regex={getRegexString(value)}
@@ -173,7 +191,10 @@ function TillCounter(props: Props): JSX.Element {
       <div className="total">
         <p>
           <b>Total:</b>{' '}
-          <span className="total-span">${(total / 100).toFixed(2)}</span>
+          <span className="total-span">
+            {props.denoms.symbol}
+            {(total / 100).toFixed(2)}
+          </span>
         </p>
       </div>
     </div>
