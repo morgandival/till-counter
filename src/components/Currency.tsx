@@ -19,6 +19,7 @@ function Currency(props: Props): JSX.Element {
       <select id="currency" onChange={handleChange}>
         <option value="AUD">AUD</option>
         <option value="EUR">EUR</option>
+        <option value="JPY">JPY</option>
         <option value="NZD">NZD</option>
         <option value="USD">USD</option>
       </select>

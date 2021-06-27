@@ -54,6 +54,12 @@ function App(): JSX.Element {
           ]
         };
         break;
+      case 'JPY':
+        denominations = {
+          symbol: '¥',
+          value: [10000, 5000, 2000, 1000, 500, 100, 50, 10, 5, 1]
+        };
+        break;
       case 'USD':
         denominations = {
           symbol: '$',

@@ -76,6 +76,22 @@ function TillCounter(props: Props): JSX.Element {
   function getRegexString(value: number) {
     let regex = '';
     switch (value) {
+      // $10000
+      case 10000:
+        regex = '([0-9]*0000|0).(00)';
+        break;
+      // $5000
+      case 5000:
+        regex = '([0-9]*[05]000|0).(00)';
+        break;
+      // $2000
+      case 2000:
+        regex = '([0-9]*[02468]000|0).(00)';
+        break;
+      // $1000
+      case 1000:
+        regex = '([0-9]*000|0).(00)';
+        break;
       // $500
       case 500:
         regex = '([0-9]*[05]00|0).(00)';

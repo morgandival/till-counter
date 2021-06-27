@@ -25,7 +25,7 @@ body {
 .denom-label {
   display: inline-block;
   text-align: right;
-  width: 4em;
+  width: 5em;
 }
 
 .denom-input {
