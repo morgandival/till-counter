@@ -14,6 +14,8 @@ So I built this app to help me count up all of my dollarydoos!
 
 It uses React states to keep track of the values entered, display a count of each denomination, and maintains a running total at the bottom.
 
+Each currency option dynamically generates the relevant denominations and displays the symbols of that currency.
+
 ## Upgrades:
 
 - [x] Denomination counts based on amounts entered
@@ -22,6 +24,11 @@ It uses React states to keep track of the values entered, display a count of eac
 - [x] Alternative currencies!!! (AUD, EUR, JPY, NZD, USD)
 - [x] Alternative currencies 2.0: change the symbol for currencies that don't use dollars
 - [ ] Reset button: click to reset to 0.00 so you can start again without refreshing.
+
+## Known Issues:
+
+- Some values don't display their counts correctly
+- Changing currencies carries existing values over to new currency
 
 ## Lessons Learned:
 
