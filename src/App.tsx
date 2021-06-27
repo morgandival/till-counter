@@ -4,10 +4,10 @@ import Header from './components/Header';
 import Currency from './components/Currency';
 import TillCounter from './components/TillCounter';
 
-interface Currency {
+type Currency = {
   symbol: string;
   value: Array<number>;
-}
+};
 
 function App(): JSX.Element {
   // Initialise currency

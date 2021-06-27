@@ -6,15 +6,15 @@ type Props = {
   denoms: Currency;
 };
 
-interface Currency {
+type Currency = {
   symbol: string;
   value: Array<number>;
-}
+};
 
-interface Denom {
+type Denom = {
   denom: string;
   value: number;
-}
+};
 
 // Main function
 function TillCounter(props: Props): JSX.Element {
