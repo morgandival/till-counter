@@ -23,7 +23,8 @@ Each currency option dynamically generates the relevant denominations and displa
 - [x] Better handling and display of invalid values
 - [x] Alternative currencies!!! (AUD, EUR, JPY, NZD, USD)
 - [x] Alternative currencies 2.0: change the symbol for currencies that don't use dollars
-- [ ] Reset button: click to reset to 0.00 so you can start again without refreshing.
+- [x] Reset button: click to reset to 0.00 so you can start again without refreshing
+- [ ] Reset on currency change
 
 ## Known Issues:
 
