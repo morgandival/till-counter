@@ -45,3 +45,8 @@ body {
 input:invalid {
   box-shadow: 0 0 5px 1px red;
 }
+
+.reset {
+  margin: 0.4em;
+  padding: 0.3em 1.4em;
+}

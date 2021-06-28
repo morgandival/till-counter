@@ -230,8 +230,10 @@ function TillCounter(props: Props): JSX.Element {
             {(total / 100).toFixed(2)}
           </span>
         </p>
+        <button className="reset" onClick={handleReset}>
+          Reset
+        </button>
       </div>
-      <button onClick={handleReset}>Reset</button>
     </div>
   );
 }
