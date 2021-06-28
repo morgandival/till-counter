@@ -63,6 +63,24 @@ function TillCounter(props: Props): JSX.Element {
     }
   };
 
+  // Handles what happens when the reset button is clicked
+  const handleReset = () => {
+    // Change all input fields to 0.00
+    Array.from(document.querySelectorAll('input')).forEach(
+      (input) => (input.value = '0.00')
+    );
+
+    // Reset denominations array
+    setDenoms(() => {
+      return [];
+    });
+
+    // Reset total
+    setTotal(() => {
+      return 0;
+    });
+  };
+
   // Adds the values of the denoms array together and returns the total
   function addDenomValues() {
     return denoms
@@ -197,6 +215,7 @@ function TillCounter(props: Props): JSX.Element {
           </span>
         </p>
       </div>
+      <button onClick={handleReset}>Reset</button>
     </div>
   );
 }
