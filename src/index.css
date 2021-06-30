@@ -25,17 +25,18 @@ body {
 .denom-label {
   display: inline-block;
   text-align: right;
-  width: 5em;
+  width: 4.5em;
 }
 
 .denom-input {
-  margin: 0 1em 0 1em;
+  margin: 0 0.5em 0 0.5em;
   text-align: right;
+  width: 10em;
 }
 
 .denom-count {
   display: inline-block;
-  width: 4em;
+  width: 3em;
 }
 
 .total {
