@@ -20,64 +20,6 @@ function TillCounter(): JSX.Element {
   const [total, setTotal] = React.useState(0);
   const [currency, setCurrency] = React.useState('AUD');
 
-  // Based on currency select option, populate till counter denomiations
-  function fillCurrency(currency: string): Currency {
-    // Initialise return array
-    let denominations: Currency = { symbol: '', value: [] };
-
-    // Fill array based on currency
-    switch (currency) {
-      case 'AUD':
-        denominations = {
-          symbol: '$',
-          value: [100, 50, 20, 10, 5, 2, 1, 0.5, 0.2, 0.1, 0.05]
-        };
-        break;
-      case 'NZD':
-        denominations = {
-          symbol: '$',
-          value: [100, 50, 20, 10, 5, 2, 1, 0.5, 0.2, 0.1]
-        };
-        break;
-      case 'EUR':
-        denominations = {
-          symbol: '€',
-          value: [
-            500,
-            200,
-            100,
-            50,
-            20,
-            10,
-            5,
-            2,
-            1,
-            0.5,
-            0.2,
-            0.1,
-            0.05,
-            0.02,
-            0.01
-          ]
-        };
-        break;
-      case 'JPY':
-        denominations = {
-          symbol: '¥',
-          value: [10000, 5000, 2000, 1000, 500, 100, 50, 10, 5, 1]
-        };
-        break;
-      case 'USD':
-        denominations = {
-          symbol: '$',
-          value: [100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05, 0.01]
-        };
-        break;
-    }
-
-    return denominations;
-  }
-
   // Handles what happens when the input field value is altered
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     // Extract input ID and value
@@ -144,6 +86,64 @@ function TillCounter(): JSX.Element {
       .reduce(function (a, b) {
         return a + b;
       });
+  }
+
+  // Based on currency select option, populate till counter denomiations
+  function fillCurrency(currency: string): Currency {
+    // Initialise return array
+    let denominations: Currency = { symbol: '', value: [] };
+
+    // Fill array based on currency
+    switch (currency) {
+      case 'AUD':
+        denominations = {
+          symbol: '$',
+          value: [100, 50, 20, 10, 5, 2, 1, 0.5, 0.2, 0.1, 0.05]
+        };
+        break;
+      case 'NZD':
+        denominations = {
+          symbol: '$',
+          value: [100, 50, 20, 10, 5, 2, 1, 0.5, 0.2, 0.1]
+        };
+        break;
+      case 'EUR':
+        denominations = {
+          symbol: '€',
+          value: [
+            500,
+            200,
+            100,
+            50,
+            20,
+            10,
+            5,
+            2,
+            1,
+            0.5,
+            0.2,
+            0.1,
+            0.05,
+            0.02,
+            0.01
+          ]
+        };
+        break;
+      case 'JPY':
+        denominations = {
+          symbol: '¥',
+          value: [10000, 5000, 2000, 1000, 500, 100, 50, 10, 5, 1]
+        };
+        break;
+      case 'USD':
+        denominations = {
+          symbol: '$',
+          value: [100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05, 0.01]
+        };
+        break;
+    }
+
+    return denominations;
   }
 
   // Returns a regex string based on the denomination value and is used to populate the inputs pattern attribute for validation
