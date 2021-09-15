@@ -28,7 +28,7 @@ Each currency option dynamically generates the relevant denominations and displa
 
 ## Known Issues:
 
-- Some values don't display their counts correctly
+- ~~Some values don't display their counts correctly~~
 - Changing currencies carries existing values over to new currency
 
 ## Lessons Learned:
