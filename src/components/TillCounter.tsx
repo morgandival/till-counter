@@ -146,89 +146,73 @@ function TillCounter(): JSX.Element {
     return denominations;
   }
 
-  // Returns a regex string based on the denomination value and is used to populate the inputs pattern attribute for validation
+  // Returns a regex string based on the denomination value and is used to populate the inputs pattern attribute for validation.
   function getRegexString(value: number) {
-    let regex = '';
+    let regex: string;
+
     switch (value) {
-      // $10000
       case 10000:
-        regex = '([0-9]*0000|0).(00)';
+        regex = '([0-9]*0000|0).00';
         break;
-      // $5000
       case 5000:
-        regex = '([0-9]*[05]000|0).(00)';
+        regex = '([0-9]*[05]000|0).00';
         break;
-      // $2000
       case 2000:
-        regex = '([0-9]*[02468]000|0).(00)';
+        regex = '([0-9]*[02468]000|0).00';
         break;
-      // $1000
       case 1000:
-        regex = '([0-9]*000|0).(00)';
+        regex = '([0-9]*000|0).00';
         break;
-      // $500
       case 500:
-        regex = '([0-9]*[05]00|0).(00)';
+        regex = '([0-9]*[05]00|0).00';
         break;
-      // $200
       case 200:
-        regex = '([0-9]*[02468]00|0).(00)';
+        regex = '([0-9]*[02468]00|0).00';
         break;
-      // $100
       case 100:
-        regex = '([0-9]*00|0).(00)';
+        regex = '([0-9]*00|0).00';
         break;
-      // $50
       case 50:
-        regex = '([0-9]*[05]0|0).(00)';
+        regex = '([0-9]*[05]0|0).00';
         break;
-      // $20
       case 20:
-        regex = '([0-9]*[02468]0|0).(00)';
+        regex = '([0-9]*[02468]0|0).00';
         break;
-      // $10
       case 10:
-        regex = '[0-9]*0.(00)';
+        regex = '[0-9]*0.00';
         break;
-      // $5
       case 5:
-        regex = '[0-9]*[05].(00)';
+        regex = '[0-9]*[05].00';
         break;
-      // $2
       case 2:
-        regex = '[0-9]*[02468].(00)';
+        regex = '[0-9]*[02468].00';
         break;
-      // $1
       case 1:
-        regex = '[0-9]+.(00)';
+        regex = '[0-9]+.00';
         break;
-      // $0.50
       case 0.5:
-        regex = '[0-9]+.(00|50)';
+        regex = '[0-9]+.(0|5)0';
         break;
-      // $0.25
       case 0.25:
         regex = '[0-9]+.(00|25|50|75)';
         break;
-      // $0.20
       case 0.2:
-        regex = '[0-9]+.[02468](0)';
+        regex = '[0-9]+.[02468]0';
         break;
-      // $0.10
       case 0.1:
-        regex = '[0-9]+.[0-9](0)';
+        regex = '[0-9]+.[0-9]0';
         break;
-      // $0.05
       case 0.05:
         regex = '[0-9]+.[0-9](0|5)';
         break;
-      // $0.02
       case 0.02:
         regex = '[0-9]+.[0-9][02468]';
         break;
-      // $0.01:
       case 0.01:
         regex = '[0-9]+.[0-9]{2}';
+        break;
+      default:
+        regex = '';
         break;
     }
     return regex;
@@ -242,12 +226,12 @@ function TillCounter(): JSX.Element {
     }
 
     // If denomination value is not cleanly divisible...
-    if ((denoms[index].value % (value * 100)) / 100 != 0) {
+    if ((Math.round(denoms[index].value) % (value * 100)) / 100 != 0) {
       return 0;
     }
 
     // Finally, return only whole number
-    return denoms[index].value / value / 100;
+    return Math.round(denoms[index].value) / value / 100;
   }
 
   // Initialise denominations output array
