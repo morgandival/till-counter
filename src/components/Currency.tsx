@@ -1,13 +1,36 @@
 import React from 'react';
 
+type Denom = {
+  denom: string;
+  value: number;
+};
+
 type Props = {
   currency: string;
   setCurrency: React.Dispatch<React.SetStateAction<string>>;
+  setDenoms: React.Dispatch<React.SetStateAction<Denom[]>>;
+  setTotal: React.Dispatch<React.SetStateAction<number>>;
 };
 
 function Currency(props: Props): JSX.Element {
   // Handles what happens when currency is changed...
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    // Change all input fields to 0.00
+    Array.from(document.querySelectorAll('input')).forEach(
+      (input) => (input.value = '0.00')
+    );
+
+    // Reset denominations array
+    props.setDenoms(() => {
+      return [];
+    });
+
+    // Reset total
+    props.setTotal(() => {
+      return 0;
+    });
+
+    //
     props.setCurrency(() => {
       return event.target.value;
     });

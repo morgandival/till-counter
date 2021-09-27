@@ -263,7 +263,12 @@ function TillCounter(): JSX.Element {
 
   return (
     <div className="tillcounter">
-      <Currency currency={currency} setCurrency={setCurrency} />
+      <Currency
+        currency={currency}
+        setCurrency={setCurrency}
+        setDenoms={setDenoms}
+        setTotal={setTotal}
+      />
       {outputs}
       <hr />
       <div className="total">
