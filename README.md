@@ -25,6 +25,7 @@ Each currency option dynamically generates the relevant denominations and displa
 - [x] Alternative currencies 2.0: change the symbol for currencies that don't use dollars!
 - [x] Reset button: click to reset to 0.00 so you can start again without refreshing!
 - [x] Reset on currency change!
+- [] Ability to toggle currency order (currently fixed highest -> lowest)
 
 ## Known Issues:
 
