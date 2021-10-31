@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 type Denom = {
   denom: string;
@@ -7,9 +7,9 @@ type Denom = {
 
 type Props = {
   currency: string;
-  setCurrency: React.Dispatch<React.SetStateAction<string>>;
-  setDenoms: React.Dispatch<React.SetStateAction<Denom[]>>;
-  setTotal: React.Dispatch<React.SetStateAction<number>>;
+  setCurrency: Dispatch<SetStateAction<string>>;
+  setDenoms: Dispatch<SetStateAction<Denom[]>>;
+  setTotal: Dispatch<SetStateAction<number>>;
 };
 
 function Currency(props: Props): JSX.Element {
@@ -21,19 +21,13 @@ function Currency(props: Props): JSX.Element {
     );
 
     // Reset denominations array
-    props.setDenoms(() => {
-      return [];
-    });
+    props.setDenoms(() => []);
 
     // Reset total
-    props.setTotal(() => {
-      return 0;
-    });
+    props.setTotal(() => 0);
 
     // Return new currency value
-    props.setCurrency(() => {
-      return event.target.value;
-    });
+    props.setCurrency(() => event.target.value);
   };
 
   return (
