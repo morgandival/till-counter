@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Currency from '../components/Currency';
 import Denomination from '../components/Denomination';
 
@@ -16,9 +16,9 @@ type Denom = {
 // Main function
 function TillCounter(): JSX.Element {
   // State initialisation
-  const [denoms, setDenoms] = React.useState<Denom[]>([]);
-  const [total, setTotal] = React.useState(0);
-  const [currency, setCurrency] = React.useState('AUD');
+  const [denoms, setDenoms] = useState<Denom[]>([]);
+  const [total, setTotal] = useState(0);
+  const [currency, setCurrency] = useState('AUD');
 
   // Handles what happens when the input field value is altered
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,21 +32,17 @@ function TillCounter(): JSX.Element {
     // If index does not exist...
     if (index === -1) {
       // Push new denom and value to end of denoms array
-      setDenoms((oldDenoms) => {
-        return [...oldDenoms, { denom, value }];
-      });
+      setDenoms((oldDenoms) => [...oldDenoms, { denom, value }]);
     }
 
     // If index exists...
     if (index > -1) {
       // Update values of specific index
-      setDenoms((oldDenoms) => {
-        return [
-          ...oldDenoms.slice(0, index),
-          { denom, value },
-          ...oldDenoms.slice(index + 1)
-        ];
-      });
+      setDenoms((oldDenoms) => [
+        ...oldDenoms.slice(0, index),
+        { denom, value },
+        ...oldDenoms.slice(index + 1)
+      ]);
     }
   };
 
@@ -55,9 +51,7 @@ function TillCounter(): JSX.Element {
     // Check to see if there are array items to add together
     if (denoms.length > 0) {
       // Push to usestate
-      setTotal(() => {
-        return addDenomValues();
-      });
+      setTotal(() => addDenomValues());
     }
   };
 
@@ -69,23 +63,15 @@ function TillCounter(): JSX.Element {
     );
 
     // Reset denominations array
-    setDenoms(() => {
-      return [];
-    });
+    setDenoms(() => []);
 
     // Reset total
-    setTotal(() => {
-      return 0;
-    });
+    setTotal(() => 0);
   };
 
   // Adds the values of the denoms array together and returns the total
   function addDenomValues() {
-    return denoms
-      .map((a) => a.value)
-      .reduce(function (a, b) {
-        return a + b;
-      });
+    return denoms.map((a) => a.value).reduce((a, b) => a + b);
   }
 
   // Based on currency select option, populate till counter denomiations
