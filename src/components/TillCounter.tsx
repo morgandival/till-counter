@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Currency from '../components/Currency';
 import Denomination from '../components/Denomination';
 
@@ -16,9 +16,9 @@ type Denom = {
 // Main function
 function TillCounter(): JSX.Element {
   // State initialisation
-  const [denoms, setDenoms] = React.useState<Denom[]>([]);
-  const [total, setTotal] = React.useState(0);
-  const [currency, setCurrency] = React.useState('AUD');
+  const [denoms, setDenoms] = useState<Denom[]>([]);
+  const [total, setTotal] = useState(0);
+  const [currency, setCurrency] = useState('AUD');
 
   // Handles what happens when the input field value is altered
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
