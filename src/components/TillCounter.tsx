@@ -19,6 +19,7 @@ function TillCounter(): JSX.Element {
   const [denoms, setDenoms] = useState<Denom[]>([]);
   const [total, setTotal] = useState(0);
   const [currency, setCurrency] = useState('AUD');
+  const [reverse, setReverse] = useState(false);
 
   // Handles what happens when the input field value is altered
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,6 +68,9 @@ function TillCounter(): JSX.Element {
 
     // Reset total
     setTotal(() => 0);
+
+    // Reset reverse
+    setReverse(() => false);
   };
 
   // Adds the values of the denoms array together and returns the total
@@ -127,6 +131,10 @@ function TillCounter(): JSX.Element {
           value: [100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05, 0.01]
         };
         break;
+    }
+
+    if (reverse === true) {
+      denominations.value.reverse();
     }
 
     return denominations;
@@ -247,6 +255,10 @@ function TillCounter(): JSX.Element {
     );
   });
 
+  const handleReverse = () => {
+    reverse ? setReverse(() => false) : setReverse(() => true);
+  };
+
   return (
     <div className="tillcounter">
       <Currency
@@ -255,6 +267,10 @@ function TillCounter(): JSX.Element {
         setDenoms={setDenoms}
         setTotal={setTotal}
       />
+      <div className="reverse">
+        <label>Reverse: </label>
+        <input type="checkbox" checked={reverse} onChange={handleReverse} />
+      </div>
       {outputs}
       <hr />
       <div className="total">
