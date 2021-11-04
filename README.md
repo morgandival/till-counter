@@ -25,7 +25,7 @@ Each currency option dynamically generates the relevant denominations and displa
 - [x] Alternative currencies 2.0: change the symbol for currencies that don't use dollars!
 - [x] Reset button: click to reset to 0.00 so you can start again without refreshing!
 - [x] Reset on currency change!
-- [] Ability to toggle currency order (currently fixed highest -> lowest)
+- [x] Ability to toggle sorting of currency order
 
 ## Known Issues:
 
@@ -44,3 +44,4 @@ Each currency option dynamically generates the relevant denominations and displa
 - Allowing for alternative currency symbols required reworking the denominations array into a currency object with the symbol as a string property and the denominations array as another property.
 - It is a good idea to keep in mind when dealing with currency to work with integers and divide when necessary. Also, rounding is important when working with JS numbers and modulus.
 - Resetting on currency change required duplication of the reset button logic, and I should work on learning how to pass functions to child components.
+- Refactoring arrow functions was a fun exercise that made me think about writing more efficient but still legible code.
