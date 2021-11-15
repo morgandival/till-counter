@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Currency from '../components/Currency';
 import Denomination from '../components/Denomination';
 
-// Declare types
 type Currency = {
   symbol: string;
   value: Array<number>;
@@ -13,32 +12,22 @@ type Denom = {
   value: number;
 };
 
-// Main function
 function TillCounter(): JSX.Element {
-  // State initialisation
   const [denoms, setDenoms] = useState<Denom[]>([]);
   const [total, setTotal] = useState(0);
   const [currency, setCurrency] = useState('AUD');
   const [reverse, setReverse] = useState(false);
 
-  // Handles what happens when the input field value is altered
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // Extract input ID and value
     const denom: string = event.target.id;
     const value: number = parseFloat(event.target.value) * 100;
-
-    // Grab index of denom if it exists in the denoms array
     const index = denoms.findIndex((x) => x.denom === denom);
 
-    // If index does not exist...
     if (index === -1) {
-      // Push new denom and value to end of denoms array
       setDenoms((oldDenoms) => [...oldDenoms, { denom, value }]);
     }
 
-    // If index exists...
     if (index > -1) {
-      // Update values of specific index
       setDenoms((oldDenoms) => [
         ...oldDenoms.slice(0, index),
         { denom, value },
@@ -47,43 +36,32 @@ function TillCounter(): JSX.Element {
     }
   };
 
-  // Handles what happens when the input field is left
   const handleBlur = () => {
-    // Check to see if there are array items to add together
     if (denoms.length > 0) {
-      // Push to usestate
       setTotal(() => addDenomValues());
     }
   };
 
-  // Handles what happens when the reset button is clicked
   const handleReset = () => {
-    // Change all input fields to 0.00
     Array.from(document.querySelectorAll('input')).forEach(
       (input) => (input.value = '0.00')
     );
-
-    // Reset denominations array
     setDenoms(() => []);
-
-    // Reset total
     setTotal(() => 0);
-
-    // Reset reverse
     setReverse(() => false);
   };
 
-  // Adds the values of the denoms array together and returns the total
+  const handleReverse = () => {
+    reverse ? setReverse(() => false) : setReverse(() => true);
+  };
+
   function addDenomValues() {
     return denoms.map((a) => a.value).reduce((a, b) => a + b);
   }
 
-  // Based on currency select option, populate till counter denomiations
   function fillCurrency(currency: string): Currency {
-    // Initialise return array
     let denominations: Currency = { symbol: '', value: [] };
 
-    // Fill array based on currency
     switch (currency) {
       case 'AUD':
         denominations = {
@@ -140,7 +118,6 @@ function TillCounter(): JSX.Element {
     return denominations;
   }
 
-  // Returns a regex string based on the denomination value and is used to populate the inputs pattern attribute for validation.
   function getRegexString(value: number) {
     let regex: string;
 
@@ -212,36 +189,26 @@ function TillCounter(): JSX.Element {
     return regex;
   }
 
-  // Returns count of specified denomination
   function getCount(index: number, value: number): number {
-    // If index does not exist...
     if (index < 0) {
       return 0;
     }
 
-    // If denomination value is not cleanly divisible...
     if ((Math.round(denoms[index].value) % (value * 100)) / 100 != 0) {
       return 0;
     }
 
-    // Finally, return only whole number
     return Math.round(denoms[index].value) / value / 100;
   }
 
-  // Initialise denominations output array
   const outputs: Array<JSX.Element> = [];
-
-  // Get denominations based on selected currency
   const denominations = fillCurrency(currency);
 
-  // Fill outputs array
   denominations.value.forEach((value) => {
-    // Get denoms index
     const index = denoms.findIndex(
       (x) => x.denom === `denom-${value.toString()}`
     );
 
-    // Add Denominations as child components
     outputs.push(
       <Denomination
         key={`denom-${value}`}
@@ -254,10 +221,6 @@ function TillCounter(): JSX.Element {
       />
     );
   });
-
-  const handleReverse = () => {
-    reverse ? setReverse(() => false) : setReverse(() => true);
-  };
 
   return (
     <div className="tillcounter">
