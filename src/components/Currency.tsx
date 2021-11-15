@@ -13,20 +13,13 @@ type Props = {
 };
 
 function Currency(props: Props): JSX.Element {
-  // Handles what happens when currency is changed...
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    // Reset all input fields to 0.00
     Array.from(document.querySelectorAll('input')).forEach(
       (input) => (input.value = '0.00')
     );
 
-    // Reset denominations array
     props.setDenoms(() => []);
-
-    // Reset total
     props.setTotal(() => 0);
-
-    // Return new currency value
     props.setCurrency(() => event.target.value);
   };
 
