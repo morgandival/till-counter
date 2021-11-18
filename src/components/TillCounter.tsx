@@ -55,7 +55,7 @@ function TillCounter(): JSX.Element {
   };
 
   function addDenomValues() {
-    if (denoms.length != 0) {
+    if (denoms.length > 0) {
       return denoms.map((a) => a.value).reduce((a, b) => a + b);
     }
 
