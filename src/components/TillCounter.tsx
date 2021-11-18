@@ -14,7 +14,6 @@ type Denom = {
 
 function TillCounter(): JSX.Element {
   const [denoms, setDenoms] = useState<Denom[]>([]);
-  const [total, setTotal] = useState(0);
   const [currency, setCurrency] = useState('AUD');
   const [reverse, setReverse] = useState(false);
 
@@ -38,7 +37,7 @@ function TillCounter(): JSX.Element {
 
   const handleBlur = () => {
     if (denoms.length > 0) {
-      setTotal(() => addDenomValues());
+      addDenomValues();
     }
   };
 
@@ -47,8 +46,8 @@ function TillCounter(): JSX.Element {
       (input) => (input.value = '0.00')
     );
     setDenoms(() => []);
-    setTotal(() => 0);
     setReverse(() => false);
+    addDenomValues();
   };
 
   const handleReverse = () => {
@@ -56,7 +55,11 @@ function TillCounter(): JSX.Element {
   };
 
   function addDenomValues() {
-    return denoms.map((a) => a.value).reduce((a, b) => a + b);
+    if (denoms.length != 0) {
+      return denoms.map((a) => a.value).reduce((a, b) => a + b);
+    }
+
+    return 0;
   }
 
   function fillCurrency(currency: string): Currency {
@@ -228,7 +231,6 @@ function TillCounter(): JSX.Element {
         currency={currency}
         setCurrency={setCurrency}
         setDenoms={setDenoms}
-        setTotal={setTotal}
       />
       <div className="reverse">
         <label>Reverse: </label>
@@ -241,7 +243,7 @@ function TillCounter(): JSX.Element {
           <b>Total:</b>{' '}
           <span className="total-span">
             {denominations.symbol}
-            {(total / 100).toFixed(2)}
+            {(addDenomValues() / 100).toFixed(2)}
           </span>
         </p>
         <button className="reset" onClick={handleReset}>
