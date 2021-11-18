@@ -9,7 +9,6 @@ type Props = {
   currency: string;
   setCurrency: Dispatch<SetStateAction<string>>;
   setDenoms: Dispatch<SetStateAction<Denom[]>>;
-  setTotal: Dispatch<SetStateAction<number>>;
 };
 
 function Currency(props: Props): JSX.Element {
@@ -19,7 +18,6 @@ function Currency(props: Props): JSX.Element {
     );
 
     props.setDenoms(() => []);
-    props.setTotal(() => 0);
     props.setCurrency(() => event.target.value);
   };
 
