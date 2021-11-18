@@ -25,7 +25,7 @@ Each currency option dynamically generates the relevant denominations and displa
 - [x] Alternative currencies 2.0: change the symbol for currencies that don't use dollars!
 - [x] Reset button: click to reset to 0.00 so you can start again without refreshing!
 - [x] Reset on currency change!
-- [x] Ability to toggle sorting of currency order
+- [x] Ability to toggle sorting of currency order!
 
 ## Known Issues:
 
@@ -34,7 +34,7 @@ Each currency option dynamically generates the relevant denominations and displa
 ## Resolved Issues:
 
 - Some values don't display their counts correctly: resolved by adding rounding when checking for modulus before displaying.
-- Changing currencies carries existing values over to new currency: resolved by adding the same logic from the reset button to the currency selector onChange event.
+- Changing currencies carried existing values over to new currency: resolved by adding the same logic from the reset button to the currency selector onChange event.
 
 ## Lessons Learned:
 
@@ -44,4 +44,5 @@ Each currency option dynamically generates the relevant denominations and displa
 - Allowing for alternative currency symbols required reworking the denominations array into a currency object with the symbol as a string property and the denominations array as another property.
 - It is a good idea to keep in mind when dealing with currency to work with integers and divide when necessary. Also, rounding is important when working with JS numbers and modulus.
 - Resetting on currency change required duplication of the reset button logic, and I should work on learning how to pass functions to child components.
-- Refactoring arrow functions was a fun exercise that made me think about writing more efficient but still legible code.
+- Refactoring arrow functions was a fun exercise that made me think about writing more efficient but still legible code. (Implicit returns and ternary if statements)
+- After doing some research, I've come to the realisation that the total does not need to be stored in a useState variable since I'm calling a function to add the fields together anyway. So I removed it.
