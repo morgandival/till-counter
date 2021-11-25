@@ -3,8 +3,9 @@ import Currency from '../components/Currency';
 import Denomination from '../components/Denomination';
 
 type Currency = {
+  code: string;
   symbol: string;
-  value: Array<number>;
+  values: Array<number>;
 };
 
 type Denom = {
@@ -63,59 +64,40 @@ function TillCounter(): JSX.Element {
   }
 
   function fillCurrency(currency: string): Currency {
-    let denominations: Currency = { symbol: '', value: [] };
+    const currencies: Array<Currency> = [
+      {
+        code: 'AUD',
+        symbol: '$',
+        values: [100, 50, 20, 10, 5, 2, 1, 0.5, 0.2, 0.1, 0.05]
+      },
+      {
+        code: 'EUR',
+        symbol: '€',
+        // prettier-ignore
+        values: [500, 200, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.2, 0.1, 0.05, 0.02, 0.01]
+      },
+      {
+        code: 'JPY',
+        symbol: '¥',
+        values: [10000, 5000, 2000, 1000, 500, 100, 50, 10, 5, 1]
+      },
+      {
+        code: 'NZD',
+        symbol: '$',
+        values: [100, 50, 20, 10, 5, 2, 1, 0.5, 0.2, 0.1, 0.05]
+      },
+      {
+        code: 'USD',
+        symbol: '$',
+        values: [100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05, 0.01]
+      }
+    ];
 
-    switch (currency) {
-      case 'AUD':
-        denominations = {
-          symbol: '$',
-          value: [100, 50, 20, 10, 5, 2, 1, 0.5, 0.2, 0.1, 0.05]
-        };
-        break;
-      case 'NZD':
-        denominations = {
-          symbol: '$',
-          value: [100, 50, 20, 10, 5, 2, 1, 0.5, 0.2, 0.1]
-        };
-        break;
-      case 'EUR':
-        denominations = {
-          symbol: '€',
-          value: [
-            500,
-            200,
-            100,
-            50,
-            20,
-            10,
-            5,
-            2,
-            1,
-            0.5,
-            0.2,
-            0.1,
-            0.05,
-            0.02,
-            0.01
-          ]
-        };
-        break;
-      case 'JPY':
-        denominations = {
-          symbol: '¥',
-          value: [10000, 5000, 2000, 1000, 500, 100, 50, 10, 5, 1]
-        };
-        break;
-      case 'USD':
-        denominations = {
-          symbol: '$',
-          value: [100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05, 0.01]
-        };
-        break;
-    }
+    const denominations =
+      currencies.find((object) => object.code === currency) || currencies[0];
 
     if (reverse === true) {
-      denominations.value.reverse();
+      denominations.values.reverse();
     }
 
     return denominations;
@@ -207,7 +189,7 @@ function TillCounter(): JSX.Element {
   const outputs: Array<JSX.Element> = [];
   const denominations = fillCurrency(currency);
 
-  denominations.value.forEach((value) => {
+  denominations.values.forEach((value) => {
     const index = denoms.findIndex(
       (x) => x.denom === `denom-${value.toString()}`
     );
