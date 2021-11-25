@@ -104,74 +104,30 @@ function TillCounter(): JSX.Element {
   }
 
   function getRegexString(value: number) {
-    let regex: string;
+    const regexStrings: { [key: number]: string } = {
+      10000: '([0-9]*0000|0).00',
+      5000: '([0-9]*[05]000|0).00',
+      2000: '([0-9]*[02468]000|0).00',
+      1000: '([0-9]*000|0).00',
+      500: '([0-9]*[05]00|0).00',
+      200: '([0-9]*[02468]00|0).00',
+      100: '([0-9]*00|0).00',
+      50: '([0-9]*[05]0|0).00',
+      20: '([0-9]*[02468]0|0).00',
+      10: '[0-9]*0.00',
+      5: '[0-9]*[05].00',
+      2: '[0-9]*[02468].00',
+      1: '[0-9]+.00',
+      0.5: '[0-9]+.(0|5)0',
+      0.25: '[0-9]+.(00|25|50|75)',
+      0.2: '[0-9]+.[02468]0',
+      0.1: '[0-9]+.[0-9]0',
+      0.05: '[0-9]+.[0-9](0|5)',
+      0.02: '[0-9]+.[0-9][02468]',
+      0.01: '[0-9]+.[0-9]{2}'
+    };
 
-    switch (value) {
-      case 10000:
-        regex = '([0-9]*0000|0).00';
-        break;
-      case 5000:
-        regex = '([0-9]*[05]000|0).00';
-        break;
-      case 2000:
-        regex = '([0-9]*[02468]000|0).00';
-        break;
-      case 1000:
-        regex = '([0-9]*000|0).00';
-        break;
-      case 500:
-        regex = '([0-9]*[05]00|0).00';
-        break;
-      case 200:
-        regex = '([0-9]*[02468]00|0).00';
-        break;
-      case 100:
-        regex = '([0-9]*00|0).00';
-        break;
-      case 50:
-        regex = '([0-9]*[05]0|0).00';
-        break;
-      case 20:
-        regex = '([0-9]*[02468]0|0).00';
-        break;
-      case 10:
-        regex = '[0-9]*0.00';
-        break;
-      case 5:
-        regex = '[0-9]*[05].00';
-        break;
-      case 2:
-        regex = '[0-9]*[02468].00';
-        break;
-      case 1:
-        regex = '[0-9]+.00';
-        break;
-      case 0.5:
-        regex = '[0-9]+.(0|5)0';
-        break;
-      case 0.25:
-        regex = '[0-9]+.(00|25|50|75)';
-        break;
-      case 0.2:
-        regex = '[0-9]+.[02468]0';
-        break;
-      case 0.1:
-        regex = '[0-9]+.[0-9]0';
-        break;
-      case 0.05:
-        regex = '[0-9]+.[0-9](0|5)';
-        break;
-      case 0.02:
-        regex = '[0-9]+.[0-9][02468]';
-        break;
-      case 0.01:
-        regex = '[0-9]+.[0-9]{2}';
-        break;
-      default:
-        regex = '';
-        break;
-    }
-    return regex;
+    return regexStrings[value] || '';
   }
 
   function getCount(index: number, value: number): number {
