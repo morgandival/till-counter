@@ -46,3 +46,4 @@ Each currency option dynamically generates the relevant denominations and displa
 - Resetting on currency change required duplication of the reset button logic, and I should work on learning how to pass functions to child components.
 - Refactoring arrow functions was a fun exercise that made me think about writing more efficient but still legible code. (Implicit returns and ternary if statements)
 - After doing some research, I've come to the realisation that the total does not need to be stored in a useState variable since I'm calling a function to add the fields together anyway. So I removed it.
+- Discovered object literals as an alternative to switch statements. Much neater to implement, especially with big long lists like the different denominations.
