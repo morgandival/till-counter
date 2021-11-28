@@ -163,6 +163,15 @@ function TillCounter(): JSX.Element {
     );
   });
 
+  const ReverseCheck = (): JSX.Element => {
+    return (
+      <div className="reverse">
+        <label>Reverse: </label>
+        <input type="checkbox" checked={reverse} onChange={handleReverse} />
+      </div>
+    );
+  };
+
   return (
     <div className="tillcounter">
       <Currency
@@ -170,10 +179,7 @@ function TillCounter(): JSX.Element {
         setCurrency={setCurrency}
         setDenoms={setDenoms}
       />
-      <div className="reverse">
-        <label>Reverse: </label>
-        <input type="checkbox" checked={reverse} onChange={handleReverse} />
-      </div>
+      <ReverseCheck />
       {outputs}
       <hr />
       <div className="total">
