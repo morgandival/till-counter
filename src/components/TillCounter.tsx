@@ -172,6 +172,14 @@ function TillCounter(): JSX.Element {
     );
   };
 
+  const Reset = (): JSX.Element => {
+    return (
+      <div className="reset">
+        <button onClick={handleReset}>Reset</button>
+      </div>
+    );
+  };
+
   return (
     <div className="tillcounter">
       <Currency
@@ -191,11 +199,7 @@ function TillCounter(): JSX.Element {
           </span>
         </p>
       </div>
-      <div>
-        <button className="reset" onClick={handleReset}>
-          Reset
-        </button>
-      </div>
+      <Reset />
     </div>
   );
 }
