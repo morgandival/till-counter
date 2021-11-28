@@ -178,7 +178,7 @@ function TillCounter(): JSX.Element {
       <hr />
       <div className="total">
         <p>
-          <b>Total:</b>{' '}
+          <b>Total: </b>
           <span className="total-span">
             {denominations.symbol}
             {(addDenomValues() / 100).toFixed(2)}
