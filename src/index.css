@@ -53,6 +53,11 @@ input:invalid {
 }
 
 .reset {
+  text-align: center;
+  margin: 0.5em;
+}
+
+.reset button {
   margin: 0.4em;
   padding: 0.3em 1.4em;
 }
