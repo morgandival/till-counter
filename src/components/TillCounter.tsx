@@ -172,6 +172,20 @@ function TillCounter(): JSX.Element {
     );
   };
 
+  const Total = (): JSX.Element => {
+    return (
+      <div className="total">
+        <p>
+          <b>Total: </b>
+          <span className="total-span">
+            {denominations.symbol}
+            {(addDenomValues() / 100).toFixed(2)}
+          </span>
+        </p>
+      </div>
+    );
+  };
+
   const Reset = (): JSX.Element => {
     return (
       <div className="reset">
@@ -190,15 +204,7 @@ function TillCounter(): JSX.Element {
       <ReverseCheck />
       {outputs}
       <hr />
-      <div className="total">
-        <p>
-          <b>Total: </b>
-          <span className="total-span">
-            {denominations.symbol}
-            {(addDenomValues() / 100).toFixed(2)}
-          </span>
-        </p>
-      </div>
+      <Total />
       <Reset />
     </div>
   );
