@@ -184,6 +184,8 @@ function TillCounter(): JSX.Element {
             {(addDenomValues() / 100).toFixed(2)}
           </span>
         </p>
+      </div>
+      <div>
         <button className="reset" onClick={handleReset}>
           Reset
         </button>
