@@ -5,7 +5,7 @@ import TillCounter from './components/TillCounter';
 
 function App(): JSX.Element {
   return (
-    <div className="App">
+    <div id="App" className="App">
       <Header title="Till Counter" />
       <TillCounter />
     </div>

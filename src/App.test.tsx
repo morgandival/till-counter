@@ -2,7 +2,10 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('Render h1 element', () => {
+test('App component render', () => {
   render(<App />);
-  expect(screen.getByText('Till Counter')).toBeInTheDocument;
+
+  const myApp = screen.queryByLabelText('div id="App"');
+
+  expect(myApp).toBeInTheDocument;
 });
