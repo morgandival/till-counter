@@ -142,7 +142,7 @@ function TillCounter(): JSX.Element {
     return Math.round(denoms[index].value) / value / 100;
   }
 
-  const outputs: Array<JSX.Element> = [];
+  const outputs: JSX.Element[] = [];
   const denominations = fillCurrency(currency);
 
   denominations.values.forEach((value) => {
