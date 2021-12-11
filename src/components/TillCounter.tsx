@@ -135,7 +135,7 @@ function TillCounter(): JSX.Element {
       return 0;
     }
 
-    if ((Math.round(denoms[index].value) % (value * 100)) / 100 != 0) {
+    if ((Math.round(denoms[index].value) % (value * 100)) / 100 !== 0) {
       return 0;
     }
 
