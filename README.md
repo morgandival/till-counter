@@ -26,6 +26,7 @@ Each currency option dynamically generates the relevant denominations and displa
 - [x] Reset button: click to reset to 0.00 so you can start again without refreshing!
 - [x] Reset on currency change!
 - [x] Ability to toggle sorting of currency order!
+- [x] Pull types out into own type definition file!
 
 ## Known Issues:
 
@@ -48,3 +49,4 @@ Each currency option dynamically generates the relevant denominations and displa
 - After doing some research, I've come to the realisation that the total does not need to be stored in a useState variable since I'm calling a function to add the fields together anyway. So I removed it.
 - Discovered object literals as an alternative to switch statements. Much neater to implement, especially with big long lists like the different denominations.
 - I've begun looking into writing unit tests for my React components. So far so good.
+- Distillation of types from the components into their own file is something I've always wanted to learn, and now I have. There are a couple of types used in this project that were duplicated in a few places. That has been rectified by pullint them out in to their own types definition file.
