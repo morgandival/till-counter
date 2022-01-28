@@ -1,4 +1,4 @@
-export type Currency = {
+export type CurrencyValues = {
   code: string;
   symbol: string;
   values: Array<number>;

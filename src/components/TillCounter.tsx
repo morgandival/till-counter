@@ -1,17 +1,7 @@
 import React, { useState } from 'react';
 import Currency from '../components/Currency';
 import Denomination from '../components/Denomination';
-
-type Currency = {
-  code: string;
-  symbol: string;
-  values: Array<number>;
-};
-
-type Denom = {
-  denom: string;
-  value: number;
-};
+import { CurrencyValues, Denom } from '../types';
 
 function TillCounter(): JSX.Element {
   const [denoms, setDenoms] = useState<Denom[]>([]);
@@ -63,8 +53,8 @@ function TillCounter(): JSX.Element {
     return 0;
   }
 
-  function fillCurrency(currency: string): Currency {
-    const currencies: Array<Currency> = [
+  function fillCurrency(currency: string): CurrencyValues {
+    const currencies: Array<CurrencyValues> = [
       {
         code: 'AUD',
         symbol: '$',
