@@ -1,9 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
-
-type Denom = {
-  denom: string;
-  value: number;
-};
+import { Denom } from '../types';
 
 type Props = {
   currency: string;
