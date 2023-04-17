@@ -7,5 +7,5 @@ test('App component render', () => {
 
   const myApp = screen.queryByLabelText('div id="App"');
 
-  expect(myApp); // .toBeInTheDocument;
+  expect(myApp).toBeTruthy; // .toBeInTheDocument;
 });
