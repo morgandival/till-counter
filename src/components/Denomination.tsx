@@ -17,7 +17,7 @@ function Denomination(props: Props): JSX.Element {
         {props.denomination.toFixed(2)}
       </label>
       <input
-        id={'denom-' + props.denomination}
+        id={`denom-${props.denomination}`}
         type="text"
         className="denom-input"
         step={props.denomination}
@@ -27,7 +27,7 @@ function Denomination(props: Props): JSX.Element {
         onChange={props.onChange}
         onBlur={props.onBlur}
       ></input>
-      <label id={'count-' + props.denomination} className="denom-count">
+      <label id={`count-${props.denomination}`} className="denom-count">
         {props.count}
       </label>
     </div>
