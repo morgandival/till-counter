@@ -1,7 +1,7 @@
 export type CurrencyValues = {
   code: string;
   symbol: string;
-  values: Array<number>;
+  values: number[];
 };
 
 export type Denom = {
